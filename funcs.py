@@ -1,15 +1,15 @@
 from tkinter import *
-def twitterClick():
+def twitterClick(root):
     myLabel = Label(root, text="Twitter button pressed")
     myLabel.pack()
 
 
-def youtubeClick():
+def youtubeClick(root):
     myLabel = Label(root, text="Web button pressed")
     myLabel.pack()
 
 
-def analyzeClick():
+def analyzeClick(root):
     myLabel = Label(root, text="Time to analyze the code")
     myLabel.pack()
 
