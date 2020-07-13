@@ -1,6 +1,10 @@
 from tkinter import *
-def twitterClick(root):
-    myLabel = Label(root, text="Twitter button pressed")
+import tweets
+
+def twitterClick():
+    print("Twitter Pressed")
+    tweets.get_tweets()
+    myLabel = Label(text="Twitter info saved to twitter_output.csv")
     myLabel.pack()
 
 
