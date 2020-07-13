@@ -1,18 +1,18 @@
 import sys
 import GetOldTweets3 as got
 
-def get_tweets():
+def get_tweets(tweet_query):
     """
     Call the twitter get old tweet lib with specified info.
     """
     tweetCriteria = got.manager.TweetCriteria()
     outputFileName = "twitter_output.csv"
-    tweetCriteria.querySearch = "covid"  # TODO Get input from user
+    tweetCriteria.querySearch = tweet_query  # TODO Get input from user
     tweetCriteria.since = "2020-01-01"  # TODO Get input from user
-    tweetCriteria.until = "2020-07-31"  # TODO Get input from user
+    tweetCriteria.until = "2020-07-04"  # TODO Get input from user
     tweetCriteria.near = '41.83, -87.62'  # TODO Get input from user
-    tweetCriteria.within = "3km" # TODO Get input from user also why is this km?
-    tweetCriteria.maxTweets = 100
+    tweetCriteria.within = "5km" # TODO Get input from user also why is this km?
+    tweetCriteria.maxTweets = 2000
     print("Downloading tweets...")
 
     outputFile = open(outputFileName, "w+", encoding="utf8")
