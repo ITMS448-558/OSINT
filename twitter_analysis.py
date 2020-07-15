@@ -27,7 +27,7 @@ def analyze_tweets():
 
     #username_series = df.groupby("username")["sentiment"].value_counts(normalize=True).mul(100)
     username_series = df.groupby("username")["sentiment"].value_counts(normalize=True).mul(100).to_frame()
-    username_series.to_csv('tweet_sentiment_overview.csv', index=False)
+    username_series.to_csv('tweet_sentiment_overview.csv')
 
 
     username_df =  df["username"].value_counts()
