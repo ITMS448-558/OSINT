@@ -2,7 +2,7 @@ import tkinter as tk
 from funcs import *
 
 root = Tk()
-
+root.geometry("400x300")
 frame = Frame(root)
 frame.pack()
 
