@@ -9,10 +9,10 @@ def get_tweets(tweet_query):
     outputFileName = "twitter_output.csv"
     tweetCriteria.querySearch = tweet_query  # TODO Get input from user
     tweetCriteria.since = "2020-01-01"  # TODO Get input from user
-    tweetCriteria.until = "2020-07-04"  # TODO Get input from user
+    tweetCriteria.until = "2020-07-14"  # TODO Get input from user
     tweetCriteria.near = '41.83, -87.62'  # TODO Get input from user
     tweetCriteria.within = "5km" # TODO Get input from user also why is this km?
-    tweetCriteria.maxTweets = 2000
+    tweetCriteria.maxTweets = 1000
     print("Downloading tweets...")
 
     outputFile = open(outputFileName, "w+", encoding="utf8")
