@@ -7,4 +7,5 @@ pip3 install lxml
 pip3 install pyquery
 python3 -m pip install pandas
 pip3 install nltk
+pip3 install GetOldTweets3
 python3 nltk_helper.py
