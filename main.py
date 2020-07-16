@@ -6,7 +6,6 @@ root.geometry("400x300")
 frame = Frame(root)
 frame.pack()
 
-
 newLabel = Label(root, text="OSINT PROJECT")
 newLabel.pack()
 twitButton = Button(root, text="Twitter", command=twitterClick)
