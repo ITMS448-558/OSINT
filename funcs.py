@@ -1,10 +1,11 @@
 from tkinter import *
 import tweets
 
-def twitterClick(tweet_query):
+def twitterClick(query):
     print("Twitter Pressed")
-    tweets.get_tweets(tweet_query)
-    myLabel = Label(text="Twitter info saved to twitter_output.csv")
+    tweets.get_tweets(query)
+    query_text = query['query']
+    myLabel = Label(text=f"Twitter info saved to {query_text}_twitter_output.csv")
     myLabel.grid()
 
 def youtubeClick(root):

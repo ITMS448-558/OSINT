@@ -1,19 +1,28 @@
 import sys
 import GetOldTweets3 as got
+import os
 
 def get_tweets(tweet_query):
     """
     Call the twitter get old tweet lib with specified info.
     """
+    output_dir = "twitter_output"
+
     tweetCriteria = got.manager.TweetCriteria()
-    outputFileName = "twitter_output.csv"
-    tweetCriteria.querySearch = tweet_query  # TODO Get input from user
-    tweetCriteria.since = "2020-01-01"  # TODO Get input from user
-    tweetCriteria.until = "2020-07-14"  # TODO Get input from user
-    tweetCriteria.near = '41.83, -87.62'  # TODO Get input from user
-    tweetCriteria.within = "5km" # TODO Get input from user also why is this km?
-    tweetCriteria.maxTweets = 1000
+    outputFileName = tweet_query['query'] + "_twitter_output.csv"
+    tweetCriteria.querySearch = tweet_query['query']
+    tweetCriteria.since = tweet_query['start_date']
+    tweetCriteria.until = tweet_query['end_date']
+    tweetCriteria.near = tweet_query['location']
+    tweetCriteria.within = tweet_query['radius']
+    tweetCriteria.maxTweets = int(tweet_query['max_tweets'])
     print("Downloading tweets...")
+
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    outputFileName = os.path.join(output_dir, outputFileName)
 
     outputFile = open(outputFileName, "w+", encoding="utf8")
     outputFile.write('date,username,to,replies,retweets,favorites,text,geo,mentions,hashtags,id,permalink\n')
