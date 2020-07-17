@@ -3,6 +3,7 @@ from funcs import *
 import twitter_analysis
 
 root = Tk()
+root.title("OSINT ITMS-548")
 
 def openNewWindow(search_term):
     newWindow = Toplevel(root)
