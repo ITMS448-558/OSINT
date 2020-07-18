@@ -1,4 +1,4 @@
-apt install -y python3 python-tk python3-bs4 python3-pip
+apt install -y python3 python3-tk python3-bs4 python3-pip
 pip3 install requests
 pip3 install lxml
 pip3 install pyquery

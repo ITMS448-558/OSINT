@@ -21,6 +21,9 @@ def run_twitter(query):
     twitterClick(query)
     openNewWindow(query['query'])
 
+def run_youtube(query):
+    youtubeClick(query)
+
 def main():
     frame = Frame(root)
     frame.grid()
@@ -77,7 +80,7 @@ def main():
     twitButton.grid(row=1, column=1, pady=10)
 
 
-    webButton = Button(root, text="Grab Youtube Data", command=youtubeClick)
+    webButton = Button(root, text="Grab Youtube Data", command=run_youtube)
     webButton.grid(row=4, column=1, pady=10)
     analysisButton = Button(root, text="Analyze Data", command=analyzeClick)
     analysisButton.grid(row=6, column=1, pady=10)
