@@ -10,7 +10,7 @@ try:
 except ImportError:
     import tkinter.ttk as ttk
     py3 = True
-import multiprocessing as mp
+
 import threading as th
 import os.path
 import gui_support
@@ -18,7 +18,7 @@ import twitter_analysis
 from funcs import *
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
-    global val, w, root
+    global w, root
     global prog_location
     prog_call = sys.argv[0]
     prog_location = os.path.split(prog_call)[0]
@@ -50,7 +50,30 @@ def destroy_main():
     w = None
  
 class main:
+    def run_twitter_command(self):
+        print("Twitter thread starting")
+        data=({
+                "query": self.twitter_query.get(),
+                "start_date": self.twitter_start_date.get(),
+                "end_date": self.twitter_end_date.get(),
+                "location": self.twitter_location.get(),
+                "radius": self.twitter_radius.get(),
+                "max_tweets": self.twitter_max_tweets.get()})
+        gui_support.run_twitter(data)
+        
+    def run_youtube_command(self):
+        print("Youtube thread starting")
+        gui_support.run_youtube(self.youtube_query.get(),self.youtube_count.get())
+    def run_twitter_thread(self):
+        self.tt.start()
+        self.tt = th.Thread(target=self.run_twitter_command, args=())
+    def run_youtube_thread(self):
+        self.yh.start()
+        self.yh = th.Thread(target=self.run_youtube_command,args=())
+
     def __init__(self, top=None):
+        self.yh = th.Thread(target=self.run_youtube_command,args=())
+        self.tt = th.Thread(target=self.run_twitter_command, args=())
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -118,7 +141,7 @@ class main:
         self.collectTweets.place(relx=0.067, rely=0.75, height=31, width=260)
         self.collectTweets.configure(activebackground="#f9f9f9")
         self.collectTweets.configure(background="#0fba0f")
-        self.collectTweets.configure(command=th.Thread(target=self.run_twee).start())
+        self.collectTweets.configure(command=self.run_twitter_thread)
         self.collectTweets.configure(padx="1")
         self.collectTweets.configure(pady="3")
         self.collectTweets.configure(text='''Collect''')
@@ -184,22 +207,35 @@ class main:
         self.collectYoutube_Btn.place(relx=0.067, rely=0.75, height=31, width=260)
         self.collectYoutube_Btn.configure(activebackground="#f9f9f9")
         self.collectYoutube_Btn.configure(background="#0fba0f")
-        self.collectYoutube_Btn.configure(command=lambda :gui_support.run_youtube(self.youtube_query))
+        self.collectYoutube_Btn.configure(command=self.run_youtube_thread)
         self.collectYoutube_Btn.configure(text='''Collect Data''')
 
         self.youtube_keyword = tk.Label(self.Youtube)
-        self.youtube_keyword.place(relx=0.333, rely=0.233, height=27, width=100)
+        self.youtube_keyword.place(relx=0.333, rely=0.133, height=27, width=100)
         self.youtube_keyword.configure(activebackground="#f9f9f9")
         self.youtube_keyword.configure(text='''Keyword''')
 
         self.youtube_query = tk.Entry(self.Youtube)
-        self.youtube_query.place(relx=0.2, rely=0.367, height=29, relwidth=0.6)
-
+        self.youtube_query.place(relx=0.2, rely=0.267,height=29, relwidth=0.6)
         self.youtube_query.configure(background="white")
         self.youtube_query.configure(font="TkDefaultFont")
         self.youtube_query.configure(selectbackground="blue")
         self.youtube_query.configure(selectforeground="white")
         self.youtube_query.configure(textvariable=gui_support.youtube_query)
+
+        self.youtube_count = tk.Entry(self.Youtube)
+        self.youtube_count.place(relx=0.2, rely=0.533,height=29, relwidth=0.6)
+        self.youtube_count.configure(background="white")
+        self.youtube_count.configure(font="TkDefaultFont")
+        self.youtube_count.configure(selectbackground="blue")
+        self.youtube_count.configure(selectforeground="white")
+        self.youtube_count.configure(textvariable=gui_support.youtube_count)
+
+        self.youtube_count_Label = tk.Label(self.Youtube)
+        self.youtube_count_Label.place(relx=0.333, rely=0.4, height=27
+                , width=100)
+        self.youtube_count_Label.configure(activebackground="#f9f9f9")
+        self.youtube_count_Label.configure(text='''Count''')
 
         self.Logo = tk.Frame(top)
         self.Logo.place(relx=0.4, rely=0.0, relheight=1.0, relwidth=0.6)
@@ -255,16 +291,8 @@ class main:
         self.twitter_max_tweets.insert(END, "1000")
 
         self.youtube_query.insert(END, "funny")
-    def run_twee(self):
-            print("yes")
-            data=({
-                    "query": self.twitter_query.get(),
-                    "start_date": self.twitter_start_date.get(),
-                    "end_date": self.twitter_end_date.get(),
-                    "location": self.twitter_location.get(),
-                    "radius": self.twitter_radius.get(),
-                    "max_tweets": self.twitter_max_tweets.get()})
-            gui_support.run_twitter(data)
+        self.youtube_count.insert(END,10)
+    
 
 
 

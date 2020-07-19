@@ -19,6 +19,7 @@ import youtube.youtube as you
 
 #line 223 Needs to be added for analyze
 app_title= ""
+youtube_count=0
 youtube_query=""
 twitter_end_date=""
 twitter_location=""
@@ -58,8 +59,8 @@ def run_twitter(query):
     twitterClick(query)
     openNewWindow(query['query'])
 
-def run_youtube(qs):
-    you.run_youtube_click(qs)
+def run_youtube(youtube_query,youtube_count):
+    you.run_youtube_click(youtube_query,int(youtube_count))
 
 def twitterClick(query):
     print("Twitter Pressed")
@@ -69,8 +70,7 @@ def twitterClick(query):
     #myLabel.grid()
 
 def openNewWindow(search_term):
-    root= tk.Tk()
-    newWindow = tk.Toplevel(root)
+    newWindow = tk.Toplevel()
     newWindow.title(search_term)
     newWindow.geometry("250x250")
 
