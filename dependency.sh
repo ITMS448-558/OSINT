@@ -3,4 +3,10 @@ pip3 install requests nltk lxml pyquery socialreaper numpy GetOldTweets3 oauthli
 
 python3 -m pip install pandas
 python3 nltk_helper.py
-
+echo "-------------------------------------------------------------------------"
+echo "-------------------------------------------------------------------------"
+echo ""
+echo "add an api key https://console.developers.google.com/apis/api/youtube.googleapis.com/credentials"
+echo ""
+echo "-------------------------------------------------------------------------"
+echo "-------------------------------------------------------------------------"
