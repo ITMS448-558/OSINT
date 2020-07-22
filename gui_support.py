@@ -16,6 +16,8 @@ from tkinter import messagebox
 import os
 import tweets
 import youtube.youtube as you
+import youtube.analyze as anal
+import subprocess
 
 #line 223 Needs to be added for analyze
 app_title= ""
@@ -48,6 +50,7 @@ def raiseYoutube(frame):
 
 def raiseAnalyze(frame):
     print("Bring Analyze to front")
+
     frame.lift()
 
 def checkExit():
@@ -61,6 +64,7 @@ def run_twitter(query):
 
 def run_youtube(youtube_query,youtube_count):
     you.run_youtube_click(youtube_query,int(youtube_count))
+    openYoutubeAnalyze(youtube_query)
 
 def twitterClick(query):
     print("Twitter Pressed")
@@ -80,3 +84,17 @@ def openNewWindow(search_term):
     text.insert(tk.END, "\n")
     text.insert(tk.END, str(results[1]))
     text.grid()
+
+def openYoutubeAnalyze(qs):
+    newWindow = tk.Toplevel()
+    newWindow.title(qs)
+    newWindow.geometry("250x250")
+
+    results = anal.analyze(qs)
+    text = tk.Text(newWindow)
+    for each in results:
+        text.insert(tk.END, str(each[1]))
+        text.insert(tk.END, "\t")
+        text.insert(tk.END, str(each[0]))
+        text.insert(tk.END, "\n")
+        text.grid()
