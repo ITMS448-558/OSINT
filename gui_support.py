@@ -50,10 +50,13 @@ def raiseYoutube(frame):
     print("Bring Youtube to front")
     frame.lift()
 
+<<<<<<< HEAD
 def raiseChicago(frame):
     print("Bring Chicago to front")
     frame.lift()
 
+=======
+>>>>>>> 359e935b24b99f84494c44b68d3a645bb07167c9
 def raiseAnalyze(frame):
     print("Bring Analyze to front")
     frame.lift()
@@ -64,12 +67,17 @@ def checkExit():
         os._exit(1)
 
 def run_twitter(query):
+<<<<<<< HEAD
     print("Twitter Pressed")
     tweets.get_tweets(query)
+=======
+    twitterClick(query)
+>>>>>>> 359e935b24b99f84494c44b68d3a645bb07167c9
     openNewWindow(query['query'])
 
 def run_youtube(youtube_query,youtube_count):
     you.run_youtube_click(youtube_query,int(youtube_count))
+<<<<<<< HEAD
     openYoutubeAnalyze(youtube_query)
 
 def run_chicago(query):
@@ -83,6 +91,15 @@ def analysis(selection):
     if selection==1:weekRange()
     if selection==2:monthRange()
     if selection==3:caughtPlot()
+=======
+
+def twitterClick(query):
+    print("Twitter Pressed")
+    tweets.get_tweets(query)
+    query_text = query['query']
+    #myLabel = Label(text=f"Twitter info saved to {query_text}_twitter_output.csv")
+    #myLabel.grid()
+>>>>>>> 359e935b24b99f84494c44b68d3a645bb07167c9
 
 def openNewWindow(search_term):
     newWindow = tk.Toplevel()
@@ -95,6 +112,7 @@ def openNewWindow(search_term):
     text.insert(tk.END, "\n")
     text.insert(tk.END, str(results[1]))
     text.grid()
+<<<<<<< HEAD
 
 def openYoutubeAnalyze(qs):
     newWindow = tk.Toplevel()
@@ -109,3 +127,5 @@ def openYoutubeAnalyze(qs):
         text.insert(tk.END, str(each[0]))
         text.insert(tk.END, "\n")
         text.grid()
+=======
+>>>>>>> 359e935b24b99f84494c44b68d3a645bb07167c9
